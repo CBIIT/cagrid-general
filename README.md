@@ -1,21 +1,19 @@
-Welcome to the <PROJECTNAME> Project!
+Welcome to the cagrid-general Project!
 =====================================
 
-<PROJECTNAME> is an Open Source project the provides the functionalities of <...>
-It is written in <PROGRAMMING LANGUAGE> using <BASED_TECHNOLOGIES>.
-The goal of <PROJECTNAME> is to <...>.
+cagrid-general is an Open Source project that includes third-party libraries used by 
+caGrid. It is written in Java.
 
-<PROJECTNAME> is distributed under the BSD 3-Clause License.
+cagrid-general components developed under NCI caBIG® funding are distributed under the 
+BSD 3-Clause License, otherwise they assert their respective licenses.
 Please see the NOTICE and LICENSE files for details.
 
-You will find more details about <PROJECTNAME> in the following links:
+You will find more details about cagrid-general in the following links:
 
-    *  <PROJECTNAME_HOME_URL>
-    *  <NCI_OSDI_HOME_URL]>
-    *  <MAILING_LIST_SUBSCRIPTION_PAGE_URL>
-    *  <ISSUE_TRACKER_URL>
-    *  <DOCUMENTATION_PAGES_URL>
-    *  https://github.com/NCIP/<PROJECTNAME>
+    *  Mailing List: https://list.nih.gov/cgi-bin/wa.exe?A0=cagrid_users-l
+    *  JIRA: https://tracker.nci.nih.gov/browse/CAGRID
+    *  Wiki: https://wiki.cagrid.org
+    *  https://github.com/NCIP/cagrid-general
 
 
-Please join us in further developing and improving <PROJECTNAME>.
+Please join us in further developing and improving cagrid-general.
