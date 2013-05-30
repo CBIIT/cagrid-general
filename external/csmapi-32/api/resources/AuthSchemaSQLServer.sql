@@ -5,7 +5,7 @@
 	Ekagra Software Technologies Ltd.
 
   Distributed under the OSI-approved BSD 3-Clause License.
-  See http://ncip.github.com/cagrid-core/LICENSE.txt for details.
+  See http://ncip.github.com/cagrid-general/LICENSE.txt for details.
 ============================================================================
 */
 IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id('FK_CSM_GROUP_CSM_APPLICATION') AND OBJECTPROPERTY(id, 'IsForeignKey') = 1)

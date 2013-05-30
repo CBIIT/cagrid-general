@@ -3,7 +3,7 @@
 Argonne National Laboratory, Emory University, SemanticBits LLC, and Ekagra Software Technologies Ltd.
 
   Distributed under the OSI-approved BSD 3-Clause License.
-  See http://ncip.github.com/cagrid-core/LICENSE.txt for details.
+  See http://ncip.github.com/cagrid-general/LICENSE.txt for details.
 -->
 <ns1:scanFeatures xsi:type="ns1:scanFeaturesType" xmlns:ns1="rproteomics.cabig.duke.edu/1/scanFeatures" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
  <ns1:lsid xsi:type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema">urn:lsid:rproteomics.cabig.duhs.duke.edu:scanfeatures:1234</ns1:lsid>
