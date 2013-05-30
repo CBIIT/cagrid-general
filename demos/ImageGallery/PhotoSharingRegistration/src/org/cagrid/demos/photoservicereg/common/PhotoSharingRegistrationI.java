@@ -5,7 +5,7 @@
 *	Ekagra Software Technologies Ltd.
 *
 *  Distributed under the OSI-approved BSD 3-Clause License.
-*  See http://ncip.github.com/cagrid-core/LICENSE.txt for details.
+*  See http://ncip.github.com/cagrid-general/LICENSE.txt for details.
 *============================================================================
 **/
 package org.cagrid.demos.photoservicereg.common;
