@@ -11,7 +11,7 @@ Please see the NOTICE and LICENSE files for details.
 You will find more details about caGrid General in the following links:
 
  * [caGrid.org Wiki] (https://wiki.cagrid.org)
- * [Code Repository] (https://github.com/NCIP/caGrid General)
+ * [Code Repository] (https://github.com/NCIP/cagrid-general)
  * [Issue Tracker] (https://tracker.nci.nih.gov/browse/CAGRID)
  * [Mailing List] (https://list.nih.gov/cgi-bin/wa.exe?A0=cagrid_users-l)
 
