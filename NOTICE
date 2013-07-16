@@ -81,5 +81,5 @@ summary in the list below:
 
 1) Globus Toolkit jglobus-cog:
    Copyright <EXTERNAL-COPYRIGHT-HOLDER-1>
-   Distributed under `Apache License, Version 2.0`_.
-   .. _`Apache License, Version 2.0`:http://www.apache.org/licenses/LICENSE-2.0
+   Distributed under `Apache License`_., Version 2.0
+   .. _`Apache License`: http://www.apache.org/licenses/LICENSE-2.0
