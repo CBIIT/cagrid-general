@@ -1,7 +1,7 @@
 /**
 *============================================================================
-*  Copyright The Ohio State University Research Foundation, The University of Chicago - 
-*	Argonne National Laboratory, Emory University, SemanticBits LLC, and 
+*  Copyright The Ohio State University Research Foundation, The University of Chicago -
+*	Argonne National Laboratory, Emory University, SemanticBits LLC, and
 *	Ekagra Software Technologies Ltd.
 *
 *  Distributed under the OSI-approved BSD 3-Clause License.
@@ -32,9 +32,9 @@ import org.apache.log4j.Logger;
  * @author ervin
  */
 public class BetterLockoutManager {
-    
+
     private static Logger LOG = Logger.getLogger(BetterLockoutManager.class);
-    
+
     // the whitelisted users who will never be locked out
     private Set<String> whitelistedUsers = null;
     // A map of users to a queue of their failed login attempt times
@@ -49,9 +49,9 @@ public class BetterLockoutManager {
     private long attemptMemoryDuration;
     // a flag that indicates the lockout manager is disabled
     private boolean disabled = false;
-    
+
     private static BetterLockoutManager instance = null;
-    
+
     public static void initialize(String lockoutTime, String allowedLoginTime, String allowedAttempts) {
         if (null == instance) {
             long lockoutTimeValue = Long.parseLong(lockoutTime);
@@ -75,8 +75,8 @@ public class BetterLockoutManager {
         initialize(Constants.LOCKOUT_TIME, Constants.ALLOWED_LOGIN_TIME, Constants.ALLOWED_ATTEMPTS);
         return instance;
     }
-    
-    
+
+
     /**
      * Most functions of the CSM use getInstance() to obtain a singleton lockout manager.
      * This constructor should be only used in settings where the lockout manager instance
@@ -92,19 +92,59 @@ public class BetterLockoutManager {
         this.lockoutDuration = lockoutDuration;
         this.maxFailedAttempts = maxFailedAttempts;
         this.attemptMemoryDuration = attemptMemoryDuration;
-        LOG.debug("Lockout Manager initialized: lockoutDuration = " + lockoutDuration + 
-            ", maxFailedAttempts = " + maxFailedAttempts + 
+        LOG.debug("Lockout Manager initialized: lockoutDuration = " + lockoutDuration +
+            ", maxFailedAttempts = " + maxFailedAttempts +
             ", failedAttemptDuration = " + attemptMemoryDuration);
+
+		String lockoutFailedAttempts = System.getProperty("LOCKOUT_FAILED_ATTEMPS");
+		String lockoutDurationStr = System.getProperty("LOCKOUT_DURATION");
+		String lockoutMemoryDuration = System.getProperty("LOCKOUT_MEMORY_DURATION");
+		if(lockoutFailedAttempts != null)
+		{
+			try
+			{
+				maxFailedAttempts = Integer.parseInt(lockoutFailedAttempts);
+			}
+			catch(NumberFormatException e)
+			{
+				LOG.debug("\tInvalid value for LOCKOUT_FAILED_ATTEMPS ");
+			}
+		}
+
+		if(lockoutDurationStr != null)
+		{
+			try
+			{
+				lockoutDuration = Long.parseLong(lockoutDurationStr);
+			}
+			catch(NumberFormatException e)
+			{
+				LOG.debug("\tInvalid value for LOCKOUT_DURATION ");
+			}
+		}
+
+		if(lockoutMemoryDuration != null)
+		{
+			try
+			{
+				attemptMemoryDuration = Long.parseLong(lockoutMemoryDuration);
+			}
+			catch(NumberFormatException e)
+			{
+				LOG.debug("\tInvalid value for LOCKOUT_MEMORY_DURATION ");
+			}
+		}
+
         if (lockoutDuration == 0 || maxFailedAttempts == 0 || attemptMemoryDuration == 0) {
             disabled = true;
             LOG.debug("Lockouts disabled due to initialization with a 0 value");
         }
     }
-    
+
 
     /**
      * Determines if the user is currently locked out
-     * 
+     *
      * @param userId
      * @return
      *      True if the user is locked out, false otherwise
@@ -121,11 +161,11 @@ public class BetterLockoutManager {
         }
         return locked;
     }
-    
-    
+
+
     /**
      * Informs the lockout manager that a user has failed to log in.
-     * 
+     *
      * @param userId
      * @return
      *      True if the user gets locked out, false otherwise
@@ -148,13 +188,13 @@ public class BetterLockoutManager {
         }
         return isUserLockedOut(userId);
     }
-    
-    
+
+
     /**
      * Gets the locked out users in a Map.  The map keys are
      * user IDs, and the values are the times at which the
      * corresponding user will be unlocked.
-     * 
+     *
      * @return
      */
     public Map<String, Date> getLockedOutUsers() {
@@ -170,20 +210,20 @@ public class BetterLockoutManager {
         }
         return lockouts;
     }
-    
-    
+
+
     /**
      * Releases any lock for the user and clears
      * the failed logins for the user
-     * 
+     *
      * @param userId
      */
     public synchronized void releaseLockout(String userId) {
         lockedOutUsers.remove(userId);
         failedLogins.remove(userId);
     }
-    
-    
+
+
     /**
      * Add a user ID to the whitelist, and remove any lockout they may
      * currently have
@@ -194,23 +234,23 @@ public class BetterLockoutManager {
         this.whitelistedUsers.add(userId);
         releaseLockout(userId);
     }
-    
-    
+
+
     /**
      * Remove a user from the whitelist, making them subject to lockouts again
-     * 
+     *
      * @param userId
      */
     public void unWhitelistUser(String userId) {
         LOG.debug("Removing user " + userId + " from the whitelist");
         this.whitelistedUsers.remove(userId);
     }
-    
-    
+
+
     /**
      * Gets a list of all users currently on the whitelist and therefore
      * not subject to lockout conditions
-     * 
+     *
      * @return
      */
     public List<String> getWhitelistedUsers() {
@@ -218,13 +258,13 @@ public class BetterLockoutManager {
         users.addAll(whitelistedUsers);
         return users;
     }
-    
-    
+
+
     /**
      * Re-validates all lockout data to determine if failed attempts have
      * aged sufficiently to be "forgotten" about, if a user is locked out
      * due to failed attempts, and if a lock should be released due to age.
-     * 
+     *
      * This should be called at the start of any method that either checks
      * for or updates a lockout condition.
      */
@@ -260,28 +300,28 @@ public class BetterLockoutManager {
             }
         }
     }
-    
-    
+
+
     private class ReverseIterator<E> implements Iterator<E> {
         private ListIterator<E> internalIter = null;
-        
+
         public ReverseIterator(LinkedList<E> list) {
             this.internalIter = list.listIterator(list.size());
         }
 
-        
+
         public boolean hasNext() {
             return internalIter.hasPrevious();
         }
-        
+
 
         public E next() {
             return internalIter.previous();
         }
-        
-        
+
+
         public void remove() {
-            internalIter.remove();            
+            internalIter.remove();
         }
     }
 }
